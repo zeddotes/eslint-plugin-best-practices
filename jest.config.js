@@ -26,9 +26,12 @@ export default {
     '/node_modules/',
     'src/test-utils.ts',
     'src/index.ts',
+    '\\.d\\.ts$',
+    'dist/test-utils.js',
   ],
   coveragePathIgnorePatterns: [
     'src/test-utils.ts',
     'src/index.ts',
+    'dist/test-utils.js',
   ],
 }; 

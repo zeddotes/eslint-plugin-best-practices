@@ -4,7 +4,7 @@ type Config = Linter.Config;
 
 const baseConfig = {
   plugins: {
-    'best-practices': {},
+    'eslint-plugin-best-practices': {},
   },
 } satisfies Config;
 

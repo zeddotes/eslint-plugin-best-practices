@@ -8,10 +8,16 @@ const plugin = {
   },
   configs: {
     recommended: {
-      plugins: ['best-practices'],
+      plugins: ['eslint-plugin-best-practices'],
       rules: {
-        'best-practices/require-exports': ['error', { exports: ['metadata', 'config'] }],
-        'best-practices/file-naming-convention': ['warn', { pattern: '^[a-z][a-zA-Z0-9]*$' }],
+        'eslint-plugin-best-practices/require-exports': [
+          'error',
+          { exports: ['metadata', 'config'] },
+        ],
+        'eslint-plugin-best-practices/file-naming-convention': [
+          'warn',
+          { pattern: '^[a-z][a-zA-Z0-9]*$' },
+        ],
       },
     },
   },

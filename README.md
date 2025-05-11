@@ -17,12 +17,12 @@ npm install --save-dev eslint-plugin-best-practices
 
 ### Basic Configuration
 
-Add `best-practices` to the plugins section of your ESLint configuration file:
+Add `eslint-plugin-best-practices` to the plugins section of your ESLint configuration file:
 
 ```javascript
 // .eslintrc.js
 module.exports = {
-  plugins: ['best-practices'],
+  plugins: ['eslint-plugin-best-practices'],
   rules: {
     // Configure your rules here
   }
@@ -35,12 +35,12 @@ If you're using the new flat config format:
 
 ```javascript
 // eslint.config.js
-import bestPracticesPlugin from 'eslint-plugin-best-practices';
+import eslintPluginBestPractices from 'eslint-plugin-best-practices';
 
 export default [
   {
     plugins: {
-      'best-practices': bestPracticesPlugin,
+      'eslint-plugin-best-practices': eslintPluginBestPractices,
     },
     rules: {
       // Configure your rules here
@@ -61,7 +61,7 @@ Enforces consistent file naming patterns across your codebase. By default, it en
 // .eslintrc.js
 module.exports = {
   rules: {
-    'best-practices/file-naming-convention': ['error', {
+    'eslint-plugin-best-practices/file-naming-convention': ['error', {
       patterns: [
         { pattern: '^[a-z][a-zA-Z0-9]*$', folders: ['src/components'] }, // camelCase
         { pattern: '^[A-Z][a-zA-Z0-9]*$', folders: ['src/pages'] },      // PascalCase
@@ -88,7 +88,7 @@ Ensures that specified named exports are present in specific files. This is usef
 // In your ESLint config
 module.exports = {
   rules: {
-    'best-practices/require-exports': ['error', {
+    'eslint-plugin-best-practices/require-exports': ['error', {
       exports: ['metadata', 'config'] // Specify required exports
     }]
   }

@@ -10,7 +10,7 @@ import { TSESLint, TSESTree } from '@typescript-eslint/utils';
  * ```json
  * {
  *   "rules": {
- *     "best-practices/require-exports": ["error", { "exports": ["metadata", "config"] }]
+ *     "eslint-plugin-best-practices/require-exports": ["error", { "exports": ["metadata", "config"] }]
  *   }
  * }
  * ```

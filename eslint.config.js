@@ -40,7 +40,7 @@ export default [
       },
     },
     plugins: {
-      'best-practices': bestPracticesPlugin,
+      'eslint-plugin-best-practices': bestPracticesPlugin,
       '@typescript-eslint': tsEslintPlugin,
       'prettier': prettierPlugin,
     },
