@@ -39,9 +39,8 @@ jobs:
           skip-version-file: true
           skip-commit: true
           skip-tag: true
-          skip-push: true
-          skip-pr: true
-          skip-workflow: true
+          skip-git-pull: true
+          skip-on-empty: true
 
       - name: Create Release Pull Request or Publish to npm
         if: steps.conventional.outputs.skipped == 'false'
