@@ -1,6 +1,5 @@
 import { ESLint } from 'eslint';
 import type { Linter } from 'eslint';
-import { TSESLint } from '@typescript-eslint/utils';
 import { RuleTester } from '@typescript-eslint/rule-tester';
 import bestPracticesPlugin from './index.js';
 

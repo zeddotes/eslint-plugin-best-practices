@@ -2,7 +2,6 @@
 import { RuleTester } from '../../test-utils.js';
 import { fileNamingConvention } from '../file-naming-convention.js';
 import tsParser from '@typescript-eslint/parser';
-import path from 'path';
 
 // Set default config for all tests
 RuleTester.setDefaultConfig({
@@ -36,91 +35,134 @@ describe('file-naming-convention', () => {
       {
         code: 'export const Button = () => {}',
         filename: 'src/components/button.tsx',
-        options: [{
-          patterns: [
-            {
-              pattern: '^[a-z][a-zA-Z0-9]*$',
-              folders: ['src/components'],
-            },
-          ],
-        }],
+        options: [
+          {
+            patterns: [
+              {
+                pattern: '^[a-z][a-zA-Z0-9]*$',
+                folders: ['src/components'],
+              },
+            ],
+          },
+        ],
       },
       {
         code: 'export const Home = () => {}',
         filename: 'src/pages/Home.tsx',
-        options: [{
-          patterns: [
-            {
-              pattern: '^[A-Z][a-zA-Z0-9]*$',
-              folders: ['src/pages'],
-            },
-          ],
-        }],
+        options: [
+          {
+            patterns: [
+              {
+                pattern: '^[A-Z][a-zA-Z0-9]*$',
+                folders: ['src/pages'],
+              },
+            ],
+          },
+        ],
       },
       {
         code: 'export const formatString = () => {}',
         filename: 'src/utils/string-utils.ts',
-        options: [{
-          patterns: [
-            {
-              pattern: '^[a-z][a-z0-9-]*$',
-              folders: ['src/utils'],
-            },
-          ],
-        }],
+        options: [
+          {
+            patterns: [
+              {
+                pattern: '^[a-z][a-z0-9-]*$',
+                folders: ['src/utils'],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        code: 'export const something = () => {}',
+        filename: 'src/other/file.ts',
+        options: [
+          {
+            patterns: [
+              {
+                pattern: '^[a-z][a-zA-Z0-9]*$',
+                folders: ['src/components'],
+              },
+            ],
+          },
+        ],
       },
     ],
     invalid: [
       {
         code: 'export const button = () => {}',
         filename: 'src/components/Button.tsx',
-        options: [{
-          patterns: [
-            {
-              pattern: '^[a-z][a-zA-Z0-9]*$',
-              folders: ['src/components'],
-            },
-          ],
-        }],
+        options: [
+          {
+            patterns: [
+              {
+                pattern: '^[a-z][a-zA-Z0-9]*$',
+                folders: ['src/components'],
+              },
+            ],
+          },
+        ],
         errors: [{ messageId: 'invalidFileName', data: { pattern: '^[a-z][a-zA-Z0-9]*$' } }],
       },
       {
         code: 'export const home = () => {}',
         filename: 'src/pages/home.tsx',
-        options: [{
-          patterns: [
-            {
-              pattern: '^[A-Z][a-zA-Z0-9]*$',
-              folders: ['src/pages'],
-            },
-          ],
-        }],
+        options: [
+          {
+            patterns: [
+              {
+                pattern: '^[A-Z][a-zA-Z0-9]*$',
+                folders: ['src/pages'],
+              },
+            ],
+          },
+        ],
         errors: [{ messageId: 'invalidFileName', data: { pattern: '^[A-Z][a-zA-Z0-9]*$' } }],
       },
       {
         code: 'export const formatString = () => {}',
         filename: 'src/utils/stringUtils.ts',
-        options: [{
-          patterns: [
-            {
-              pattern: '^[a-z][a-z0-9-]*$',
-              folders: ['src/utils'],
-            },
-          ],
-        }],
+        options: [
+          {
+            patterns: [
+              {
+                pattern: '^[a-z][a-z0-9-]*$',
+                folders: ['src/utils'],
+              },
+            ],
+          },
+        ],
         errors: [{ messageId: 'invalidFileName', data: { pattern: '^[a-z][a-z0-9-]*$' } }],
       },
       {
         code: 'export const something = () => {}',
         filename: 'src/components/nested/Button.tsx',
-        options: [{
-          patterns: [
-            {
-              pattern: '^[a-z][a-zA-Z0-9]*$',
-              folders: ['src/components'],
-            },
-          ],
-        }],
+        options: [
+          {
+            patterns: [
+              {
+                pattern: '^[a-z][a-zA-Z0-9]*$',
+                folders: ['src/components'],
+              },
+            ],
+          },
+        ],
+        errors: [{ messageId: 'invalidFileName', data: { pattern: '^[a-z][a-zA-Z0-9]*$' } }],
+      },
+      {
+        code: 'export const Something = () => {}',
+        filename: 'Something.ts',
+        options: [
+          {
+            patterns: [
+              {
+                pattern: '^[a-z][a-zA-Z0-9]*$',
+                folders: ['.'],
+              },
+            ],
+          },
+        ],
         errors: [{ messageId: 'invalidFileName', data: { pattern: '^[a-z][a-zA-Z0-9]*$' } }],
       },
     ],

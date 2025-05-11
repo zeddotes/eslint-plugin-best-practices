@@ -2,7 +2,6 @@
 import { RuleTester } from '../../test-utils.js';
 import { requireExports } from '../require-exports.js';
 import tsParser from '@typescript-eslint/parser';
-import path from 'path';
 
 // Set default config for all tests
 RuleTester.setDefaultConfig({

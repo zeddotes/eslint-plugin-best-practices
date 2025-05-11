@@ -22,4 +22,13 @@ export default {
       statements: 80,
     },
   },
+  testPathIgnorePatterns: [
+    '/node_modules/',
+    'src/test-utils.ts',
+    'src/index.ts',
+  ],
+  coveragePathIgnorePatterns: [
+    'src/test-utils.ts',
+    'src/index.ts',
+  ],
 }; 
