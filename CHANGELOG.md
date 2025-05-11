@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://github.com/zeddotes/eslint-plugin-best-practices/compare/v1.1.1...v1.1.2) (2025-05-11)
+
+
+### Documentation
+
+* updated test coverage stuff ([3017d32](https://github.com/zeddotes/eslint-plugin-best-practices/commit/3017d32d63a71c12c8eb11d919a84d18da05dfc4))
+
 ### [1.1.1](https://github.com/zeddotes/eslint-plugin-best-practices/compare/v1.1.0...v1.1.1) (2025-05-11)
 
 
