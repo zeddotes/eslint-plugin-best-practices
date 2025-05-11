@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "types": ["node", "jest"]
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.test.ts",
+    "**/*.test.ts"
+  ],
+  "exclude": ["node_modules", "dist"]
+} 
