@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-best-practices",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "ESLint plugin that enforces best practices in JavaScript/TypeScript codebases",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

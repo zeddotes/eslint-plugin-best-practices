@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/zeddotes/eslint-plugin-best-practices/compare/v1.1.0...v1.1.1) (2025-05-11)
+
+
+### Documentation
+
+* added test coverage ([6fed26c](https://github.com/zeddotes/eslint-plugin-best-practices/commit/6fed26cc890845fae89870462ae07e302f416a88))
+* examples for basic usage ([a39be28](https://github.com/zeddotes/eslint-plugin-best-practices/commit/a39be2843f74532fbbe69bb9b83b7d246de6e238))
+* examples for basic usage ([be9e431](https://github.com/zeddotes/eslint-plugin-best-practices/commit/be9e43174add993821da1702eef9704ffcccf114))
+* examples for basic usage ([63d9943](https://github.com/zeddotes/eslint-plugin-best-practices/commit/63d9943da6f33b2ed4a2dc406cbc530b3ec70526))
+* updated docs to reflect updated func for file-naming-convention (multiple); ([e9da833](https://github.com/zeddotes/eslint-plugin-best-practices/commit/e9da8335fc8ed43f8fa5f51d0d373f80c66bba88))
+
 ## 1.1.0 (2025-05-11)
 
 
