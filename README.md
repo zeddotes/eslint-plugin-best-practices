@@ -23,7 +23,9 @@ Add `best-practices` to the plugins section of your ESLint configuration file:
 // .eslintrc.js
 module.exports = {
   plugins: ['best-practices'],
-  extends: ['plugin:best-practices/recommended'],
+  rules: {
+    // Add rule configurations here
+  }
 };
 ```
 
@@ -41,7 +43,7 @@ export default [
       'best-practices': bestPracticesPlugin,
     },
     rules: {
-      ...bestPracticesPlugin.configs.recommended.rules,
+      // Add rule configurations here
     },
   },
 ];
@@ -49,37 +51,51 @@ export default [
 
 ## Rules
 
-### file-naming-convention
+### `file-naming-convention`
 
-Enforces consistent file naming patterns across your codebase. By default, it ensures files follow camelCase naming.
+Enforces consistent file naming patterns across your codebase. You can specify any pattern for any folder.
+
+**Flexible Examples:**
 
 ```javascript
-// In your ESLint config
+// .eslintrc.js
 module.exports = {
   rules: {
     'best-practices/file-naming-convention': ['error', {
-      pattern: '^[a-z][a-zA-Z0-9]*$' // Default pattern: camelCase
+      patterns: [
+        { pattern: '^[a-z][a-zA-Z0-9]*$', folders: ['src/components'] }, // camelCase
+        { pattern: '^[A-Z][a-zA-Z0-9]*$', folders: ['src/pages'] },      // PascalCase
+        { pattern: '^[a-z][a-z0-9-]*$', folders: ['src/utils'] },        // kebab-case
+        { pattern: '^special-[a-z0-9-]+$', folders: ['src/special'] },   // special prefix
+        { pattern: '^[a-z][a-zA-Z0-9]*$', folders: ['.'] }              // fallback
+      ]
     }]
   }
 };
 ```
 
+- **Components**: `src/components/button.tsx` → valid, `src/components/Button.tsx` → invalid
+- **Pages**: `src/pages/Home.tsx` → valid, `src/pages/home.tsx` → invalid
+- **Utils**: `src/utils/string-utils.ts` → valid, `src/utils/stringUtils.ts` → invalid
+- **Special**: `src/special/special-feature.ts` → valid, `src/special/feature.ts` → invalid
+- **Fallback**: `src/other/fileName.ts` → valid
+
 This rule:
-- Ensures file names start with a lowercase letter
-- Allows letters and numbers
-- Prohibits special characters and hyphens
+- Allows you to specify different naming conventions for different folders
+- Supports fallback/default patterns
+- Works with any valid regex pattern
 - Helps maintain a consistent naming convention across your project
 
-### require-exports
+### `require-exports`
 
-Ensures that specified named exports are present in specific files. This is useful for maintaining consistent module interfaces across your codebase.
+Ensures that specified named exports are present in specific files.
 
 ```javascript
-// In your ESLint config
+// .eslintrc.js
 module.exports = {
   rules: {
     'best-practices/require-exports': ['error', {
-      exports: ['metadata', 'config'] // Specify required exports
+      exports: ['metadata', 'config']
     }]
   }
 };

@@ -1,6 +1,16 @@
+import { Linter } from 'eslint';
+
+type Config = Linter.Config;
+
+const baseConfig = {
+  plugins: {
+    'best-practices': {}
+  }
+} satisfies Config;
+
 export default {
-  plugins: ['best-practices'],
-  rules: {
-    'best-practices/require-exports': ['error', { exports: ['metadata', 'config'] }],
-  },
+  configs: {
+    // Basic configuration that only includes the plugin
+    recommended: baseConfig
+  }
 };
