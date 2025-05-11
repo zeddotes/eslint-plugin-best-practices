@@ -2,10 +2,10 @@ import { TSESLint, TSESTree } from '@typescript-eslint/utils';
 
 /**
  * Rule to enforce the presence of specific exports in a file.
- * 
+ *
  * This rule ensures that specified exports are present in a file, which helps maintain
  * consistency in module structure. The required exports are configurable through the rule options.
- * 
+ *
  * @example
  * ```json
  * {
@@ -14,7 +14,7 @@ import { TSESLint, TSESTree } from '@typescript-eslint/utils';
  *   }
  * }
  * ```
- * 
+ *
  * This configuration would enforce:
  * - The file must export a 'metadata' object
  * - The file must export a 'config' object
@@ -56,7 +56,7 @@ export const requireExports: TSESLint.RuleModule<'missingExport', [{ exports: st
         if (node.declaration) {
           // Handle variable declarations
           if (node.declaration.type === 'VariableDeclaration') {
-            node.declaration.declarations.forEach(decl => {
+            node.declaration.declarations.forEach((decl) => {
               if (decl.id.type === 'Identifier' && requiredExports.has(decl.id.name)) {
                 foundExports.add(decl.id.name);
               }
@@ -70,7 +70,7 @@ export const requireExports: TSESLint.RuleModule<'missingExport', [{ exports: st
           }
         } else if (node.specifiers) {
           // Handle named exports
-          node.specifiers.forEach(specifier => {
+          node.specifiers.forEach((specifier) => {
             if (specifier.type === 'ExportSpecifier' && specifier.exported.type === 'Identifier') {
               if (requiredExports.has(specifier.exported.name)) {
                 foundExports.add(specifier.exported.name);
@@ -82,7 +82,7 @@ export const requireExports: TSESLint.RuleModule<'missingExport', [{ exports: st
 
       // Check for missing exports at the end of the file
       'Program:exit'(node: TSESTree.Program) {
-        requiredExports.forEach(exportName => {
+        requiredExports.forEach((exportName) => {
           if (!foundExports.has(exportName)) {
             context.report({
               node,

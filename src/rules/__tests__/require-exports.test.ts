@@ -1,101 +1,99 @@
-import { createTestESLint, lintCode } from '../../test-utils.js';
+/* eslint-env jest */
+import { RuleTester } from '../../test-utils.js';
+import { requireExports } from '../require-exports.js';
+import tsParser from '@typescript-eslint/parser';
+import path from 'path';
+
+// Set default config for all tests
+RuleTester.setDefaultConfig({
+  plugins: {
+    'test-plugin': {
+      rules: {
+        'require-exports': requireExports,
+      },
+    },
+  },
+  languageOptions: {
+    parser: tsParser,
+    parserOptions: {
+      project: undefined,
+    },
+  },
+});
 
 /**
  * Tests for the require-exports rule.
- * 
+ *
  * This rule ensures that specified exports are present in a file.
  * It's useful for enforcing a consistent module structure, particularly
  * for files that should export specific interfaces or configurations.
- * 
+ *
  * In this test suite, we verify that files must export both 'metadata'
  * and 'config' objects.
  */
 describe('require-exports', () => {
-  const eslint = createTestESLint({
-    'best-practices/require-exports': ['error', { exports: ['metadata', 'config'] }],
-  });
+  const ruleTester = new RuleTester();
 
-  it('should pass when all required exports are present as variable declarations', async () => {
-    const result = await lintCode(
-      `export const metadata = {};
-       export const config = {};`,
-      'test.ts',
-      eslint
-    );
-    expect(result[0].messages).toHaveLength(0);
+  ruleTester.run('require-exports', requireExports, {
+    valid: [
+      {
+        code: `export const metadata = {};
+                export const config = {};`,
+        filename: 'test.ts',
+        options: [{ exports: ['metadata', 'config'] }],
+      },
+      {
+        code: `export function metadata() {}
+                export function config() {}`,
+        filename: 'test.ts',
+        options: [{ exports: ['metadata', 'config'] }],
+      },
+      {
+        code: `const metadata = {};
+                const config = {};
+                export { metadata, config };`,
+        filename: 'test.ts',
+        options: [{ exports: ['metadata', 'config'] }],
+      },
+      {
+        code: `const myMetadata = {};
+                const myConfig = {};
+                export { myMetadata as metadata, myConfig as config };`,
+        filename: 'test.ts',
+        options: [{ exports: ['metadata', 'config'] }],
+      },
+      {
+        code: `export const metadata = {}, config = {};`,
+        filename: 'test.ts',
+        options: [{ exports: ['metadata', 'config'] }],
+      },
+    ],
+    invalid: [
+      {
+        code: 'export const metadata = {};',
+        filename: 'test.ts',
+        options: [{ exports: ['metadata', 'config'] }],
+        errors: [{ messageId: 'missingExport', data: { name: 'config' } }],
+      },
+      {
+        code: 'const x = 1;',
+        filename: 'test.ts',
+        options: [{ exports: ['metadata', 'config'] }],
+        errors: [
+          { messageId: 'missingExport', data: { name: 'metadata' } },
+          { messageId: 'missingExport', data: { name: 'config' } },
+        ],
+      },
+      {
+        code: `export const myMetadata = {};
+                export const myConfig = {};`,
+        filename: 'test.ts',
+        options: [{ exports: ['metadata', 'config'] }],
+        errors: [
+          { messageId: 'missingExport', data: { name: 'metadata' } },
+          { messageId: 'missingExport', data: { name: 'config' } },
+        ],
+      },
+    ],
   });
-
-  it('should pass when all required exports are present as function declarations', async () => {
-    const result = await lintCode(
-      `export function metadata() {}
-       export function config() {}`,
-      'test.ts',
-      eslint
-    );
-    expect(result[0].messages).toHaveLength(0);
-  });
-
-  it('should pass when all required exports are present as named exports', async () => {
-    const result = await lintCode(
-      `const metadata = {};
-       const config = {};
-       export { metadata, config };`,
-      'test.ts',
-      eslint
-    );
-    expect(result[0].messages).toHaveLength(0);
-  });
-
-  it('should pass when exports have different names than declarations', async () => {
-    const result = await lintCode(
-      `const myMetadata = {};
-       const myConfig = {};
-       export { myMetadata as metadata, myConfig as config };`,
-      'test.ts',
-      eslint
-    );
-    expect(result[0].messages).toHaveLength(0);
-  });
-
-  it('should pass with multiple exports in a single declaration', async () => {
-    const result = await lintCode(
-      `export const metadata = {}, config = {};`,
-      'test.ts',
-      eslint
-    );
-    expect(result[0].messages).toHaveLength(0);
-  });
-
-  it('should fail when one required export is missing', async () => {
-    const result = await lintCode(
-      'export const metadata = {};',
-      'test.ts',
-      eslint
-    );
-    expect(result[0].messages).toHaveLength(1);
-    expect(result[0].messages[0].message).toContain('Missing required export: config');
-  });
-
-  it('should fail when all required exports are missing', async () => {
-    const result = await lintCode(
-      'const x = 1;',
-      'test.ts',
-      eslint
-    );
-    expect(result[0].messages).toHaveLength(2);
-    expect(result[0].messages[0].message).toContain('Missing required export: metadata');
-    expect(result[0].messages[1].message).toContain('Missing required export: config');
-  });
-
-  it('should fail when exports are present but with wrong names', async () => {
-    const result = await lintCode(
-      `export const myMetadata = {};
-       export const myConfig = {};`,
-      'test.ts',
-      eslint
-    );
-    expect(result[0].messages).toHaveLength(2);
-    expect(result[0].messages[0].message).toContain('Missing required export: metadata');
-    expect(result[0].messages[1].message).toContain('Missing required export: config');
-  });
-}); 
+});

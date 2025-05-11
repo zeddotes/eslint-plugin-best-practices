@@ -1,45 +1,66 @@
-import eslint from '@eslint/js';
-import tseslint from '@typescript-eslint/eslint-plugin';
-import tsparser from '@typescript-eslint/parser';
-import prettier from 'eslint-plugin-prettier';
+import bestPracticesPlugin from './dist/index.js';
+import tsParser from '@typescript-eslint/parser';
+import tsEslintPlugin from '@typescript-eslint/eslint-plugin';
+import prettierPlugin from 'eslint-plugin-prettier';
+
+const jestGlobals = {
+  describe: 'readonly',
+  it: 'readonly',
+  expect: 'readonly',
+  beforeAll: 'readonly',
+  afterAll: 'readonly',
+  beforeEach: 'readonly',
+  afterEach: 'readonly',
+  jest: 'readonly',
+};
 
 export default [
-  eslint.configs.recommended,
   {
-    files: ['src/**/*.ts', '!src/**/*.test.ts'],
+    ignores: [
+      'dist/**',
+      'coverage/**',
+      '*.js',
+      '*.json',
+      '*.md',
+      '*.yml',
+      '*.yaml',
+      '*.html',
+      '*.css',
+      '*.png',
+      '*.info'
+    ]
+  },
+  {
+    files: ['**/*.ts'],
     languageOptions: {
-      parser: tsparser,
+      parser: tsParser,
       parserOptions: {
         project: './tsconfig.json',
         tsconfigRootDir: '.',
       },
     },
     plugins: {
-      '@typescript-eslint': tseslint,
-      'prettier': prettier,
+      'best-practices': bestPracticesPlugin,
+      '@typescript-eslint': tsEslintPlugin,
+      'prettier': prettierPlugin,
     },
     rules: {
-      ...tseslint.configs.recommended.rules,
-      'prettier/prettier': 'error',
+      '@typescript-eslint/no-explicit-any': 'error',
+      '@typescript-eslint/no-unused-vars': 'error',
+      'no-undef': 'error',
+      'prettier/prettier': 'error'
     },
   },
   {
-    files: ['src/**/*.test.ts'],
+    files: ['**/*.test.ts', '**/__tests__/**/*.ts'],
     languageOptions: {
-      parser: tsparser,
+      parser: tsParser,
       parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
+        project: './tsconfig.json',
+        tsconfigRootDir: '.',
       },
+      globals: jestGlobals,
     },
-    plugins: {
-      '@typescript-eslint': tseslint,
-      'prettier': prettier,
-    },
-    rules: {
-      ...tseslint.configs.recommended.rules,
-      'prettier/prettier': 'error',
-    },
-  }
+  },
 ];
 
