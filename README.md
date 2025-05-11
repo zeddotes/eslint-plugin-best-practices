@@ -51,16 +51,7 @@ export default [
 
 ## Configuration
 
-Add the plugin to your ESLint configuration:
-
-```json
-{
-  "plugins": ["best-practices"],
-  "extends": ["plugin:best-practices/recommended"]
-}
-```
-
-Then configure the rules according to your project's needs. Here are some examples:
+Configure the rules according to your project's needs. Here are some examples:
 
 ### file-naming-convention
 
