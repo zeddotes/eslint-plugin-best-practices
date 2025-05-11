@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   version:
@@ -29,6 +32,11 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
+
+      - name: Run tests with coverage
+        run: npm test
+        env:
+          CI: true
 
       - name: Check for conventional commits
         id: conventional

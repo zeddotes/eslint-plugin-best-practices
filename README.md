@@ -23,8 +23,25 @@ Add `best-practices` to the plugins section of your ESLint configuration file:
 // .eslintrc.js
 module.exports = {
   plugins: ['best-practices'],
+  extends: ['plugin:best-practices/recommended'],
   rules: {
-    // Add rule configurations here
+    // Example: Enforce different naming conventions for different folders
+    'best-practices/file-naming-convention': ['error', {
+      patterns: [
+        // Components: camelCase
+        { pattern: '^[a-z][a-zA-Z0-9]*$', folders: ['src/components'] },
+        // Pages: PascalCase
+        { pattern: '^[A-Z][a-zA-Z0-9]*$', folders: ['src/pages'] },
+        // Utils: kebab-case
+        { pattern: '^[a-z][a-z0-9-]*$', folders: ['src/utils'] },
+        // API: snake_case
+        { pattern: '^[a-z][a-z0-9_]*$', folders: ['src/api'] },
+        // Special: must start with "special-"
+        { pattern: '^special-[a-z0-9-]+$', folders: ['src/special'] },
+        // Fallback: camelCase for all other files
+        { pattern: '^[a-z][a-zA-Z0-9]*$', folders: ['.'] }
+      ]
+    }],
   }
 };
 ```
@@ -43,17 +60,82 @@ export default [
       'best-practices': bestPracticesPlugin,
     },
     rules: {
-      // Add rule configurations here
+      // Example: Flexible folder-based patterns
+      'best-practices/file-naming-convention': ['error', {
+        patterns: [
+          { pattern: '^[a-z][a-zA-Z0-9]*$', folders: ['src/components'] }, // camelCase
+          { pattern: '^[A-Z][a-zA-Z0-9]*$', folders: ['src/pages'] },      // PascalCase
+          { pattern: '^[a-z][a-z0-9-]*$', folders: ['src/utils'] },        // kebab-case
+          { pattern: '^use[A-Z][a-zA-Z0-9]*$', folders: ['src/hooks'] },   // custom: use-prefixed camelCase
+          { pattern: '^[A-Z][A-Z0-9_]*$', folders: ['src/constants'] },    // UPPER_SNAKE_CASE
+          { pattern: '^[a-z][a-zA-Z0-9]*$', folders: ['.'] }              // fallback
+        ]
+      }],
     },
   },
 ];
 ```
 
+## Configuration
+
+Add the plugin to your ESLint configuration:
+
+```json
+{
+  "plugins": ["best-practices"],
+  "extends": ["plugin:best-practices/recommended"]
+}
+```
+
+Then configure the rules according to your project's needs. Here are some examples:
+
+### File Naming Convention
+
+```json
+{
+  "rules": {
+    "best-practices/file-naming-convention": ["error", {
+      "patterns": [
+        { "pattern": "^[a-z][a-zA-Z0-9]*$", "folders": ["src/components"] },
+        { "pattern": "^[A-Z][a-zA-Z0-9]*$", "folders": ["src/pages"] },
+        { "pattern": "^[a-z][a-z0-9-]*$", "folders": ["src/utils"] },
+        { "pattern": "^special-[a-z0-9-]+$", "folders": ["src/special"] },
+        { "pattern": "^[a-z][a-zA-Z0-9]*$", "folders": ["."] }
+      ]
+    }]
+  }
+}
+```
+
+- **Components**: `src/components/button.tsx` → valid, `src/components/Button.tsx` → invalid
+- **Pages**: `src/pages/Home.tsx` → valid, `src/pages/home.tsx` → invalid
+- **Utils**: `src/utils/string-utils.ts` → valid, `src/utils/stringUtils.ts` → invalid
+- **Special**: `src/special/special-feature.ts` → valid, `src/special/feature.ts` → invalid
+- **Fallback**: `src/other/fileName.ts` → valid
+
+### Require Exports
+
+```json
+{
+  "rules": {
+    "best-practices/require-exports": ["error", { 
+      "exports": ["metadata", "config"] 
+    }]
+  }
+}
+```
+
+This rule:
+- Enforces the presence of specific exports in files
+- Helps maintain consistent module interfaces
+- Useful for ensuring configuration files have required exports
+- Supports both variable and function exports
+
 ## Rules
 
-### `file-naming-convention`
+### file-naming-convention
 
-Enforces consistent file naming patterns across your codebase. You can specify any pattern for any folder.
+Enforces consistent file naming patterns across your codebase. By default, it ensures files follow camelCase naming, but you can specify any pattern for any folder.
 
 **Flexible Examples:**
 
@@ -74,28 +156,22 @@ module.exports = {
 };
 ```
 
-- **Components**: `src/components/button.tsx` → valid, `src/components/Button.tsx` → invalid
-- **Pages**: `src/pages/Home.tsx` → valid, `src/pages/home.tsx` → invalid
-- **Utils**: `src/utils/string-utils.ts` → valid, `src/utils/stringUtils.ts` → invalid
-- **Special**: `src/special/special-feature.ts` → valid, `src/special/feature.ts` → invalid
-- **Fallback**: `src/other/fileName.ts` → valid
-
 This rule:
 - Allows you to specify different naming conventions for different folders
 - Supports fallback/default patterns
 - Works with any valid regex pattern
 - Helps maintain a consistent naming convention across your project
 
-### `require-exports`
+### require-exports
 
-Ensures that specified named exports are present in specific files.
+Ensures that specified named exports are present in specific files. This is useful for maintaining consistent module interfaces across your codebase.
 
 ```javascript
-// .eslintrc.js
+// In your ESLint config
 module.exports = {
   rules: {
     'best-practices/require-exports': ['error', {
-      exports: ['metadata', 'config']
+      exports: ['metadata', 'config'] // Specify required exports
     }]
   }
 };
