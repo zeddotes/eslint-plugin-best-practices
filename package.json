@@ -37,6 +37,7 @@
   },
   "license": "ISC",
   "dependencies": {
+    "@typescript-eslint/rule-tester": "^8.32.0",
     "@typescript-eslint/utils": "^8.32.0",
     "path": "^0.12.7",
     "url": "^0.11.4"
