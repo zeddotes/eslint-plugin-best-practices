@@ -1,5 +1,5 @@
 {
-  "name": "eslint-plugin-best-practices",
+  "name": "eslint-plugin-quality-gates",
   "version": "1.2.1",
   "description": "ESLint plugin that enforces best practices in JavaScript/TypeScript codebases",
   "main": "dist/index.js",
@@ -28,7 +28,7 @@
     "eslint",
     "eslint-plugin",
     "eslintplugin",
-    "eslint-best-practices",
+    "eslint-quality-gates",
     "typescript"
   ],
   "author": {
@@ -65,10 +65,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zeddotes/eslint-plugin-best-practices.git"
+    "url": "git+https://github.com/zeddotes/eslint-plugin-quality-gates.git"
   },
   "bugs": {
-    "url": "https://github.com/zeddotes/eslint-plugin-best-practices/issues"
+    "url": "https://github.com/zeddotes/eslint-plugin-quality-gates/issues"
   },
-  "homepage": "https://github.com/zeddotes/eslint-plugin-best-practices#readme"
+  "homepage": "https://github.com/zeddotes/eslint-plugin-quality-gates#readme"
 }

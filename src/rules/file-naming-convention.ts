@@ -17,7 +17,7 @@ declare const process: {
  * ```json
  * {
  *   "rules": {
- *     "eslint-plugin-best-practices/file-naming-convention": ["error", {
+ *     "eslint-plugin-quality-gates/file-naming-convention": ["error", {
  *       "patterns": [
  *         {
  *           "pattern": "^[a-z][a-zA-Z0-9]*$",

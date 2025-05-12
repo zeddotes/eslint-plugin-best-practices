@@ -1,11 +1,11 @@
-# eslint-plugin-best-practices
+# eslint-plugin-quality-gates
 
 An ESLint plugin that enforces best practices in JavaScript/TypeScript codebases. This plugin helps maintain code quality and consistency by enforcing common best practices and patterns.
 
 ## Installation
 
 ```bash
-npm install --save-dev eslint-plugin-best-practices
+npm install --save-dev eslint-plugin-quality-gates
 ```
 
 ## Requirements
@@ -17,16 +17,14 @@ npm install --save-dev eslint-plugin-best-practices
 
 ### Basic Configuration
 
-Add `eslint-plugin-best-practices` to the plugins section of your ESLint configuration file:
+Add `eslint-plugin-quality-gates` to the plugins section of your ESLint configuration file:
 
-```javascript
-// .eslintrc.js
-module.exports = {
-  plugins: ['eslint-plugin-best-practices'],
-  rules: {
-    // Configure your rules here
-  }
-};
+```json
+{
+  "plugins": [
+    "eslint-plugin-quality-gates"
+  ]
+}
 ```
 
 ### Flat Config (ESLint 8.21.0+)
@@ -35,12 +33,12 @@ If you're using the new flat config format:
 
 ```javascript
 // eslint.config.js
-import eslintPluginBestPractices from 'eslint-plugin-best-practices';
+import eslintPluginQualityGates from 'eslint-plugin-quality-gates';
 
 export default [
   {
     plugins: {
-      'eslint-plugin-best-practices': eslintPluginBestPractices,
+      'eslint-plugin-quality-gates': eslintPluginQualityGates,
     },
     rules: {
       // Configure your rules here
@@ -61,7 +59,7 @@ Enforces consistent file naming patterns across your codebase. By default, it en
 // .eslintrc.js
 module.exports = {
   rules: {
-    'eslint-plugin-best-practices/file-naming-convention': ['error', {
+    'eslint-plugin-quality-gates/file-naming-convention': ['error', {
       patterns: [
         { pattern: '^[a-z][a-zA-Z0-9]*$', folders: ['src/components'] }, // camelCase
         { pattern: '^[A-Z][a-zA-Z0-9]*$', folders: ['src/pages'] },      // PascalCase
@@ -88,7 +86,7 @@ Ensures that specified named exports are present in specific files. This is usef
 // In your ESLint config
 module.exports = {
   rules: {
-    'eslint-plugin-best-practices/require-exports': ['error', {
+    'eslint-plugin-quality-gates/require-exports': ['error', {
       exports: ['metadata', 'config'] // Specify required exports
     }]
   }

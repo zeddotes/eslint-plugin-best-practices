@@ -8,13 +8,13 @@ const plugin = {
   },
   configs: {
     recommended: {
-      plugins: ['eslint-plugin-best-practices'],
+      plugins: ['eslint-plugin-quality-gates'],
       rules: {
-        'eslint-plugin-best-practices/require-exports': [
+        'eslint-plugin-quality-gates/require-exports': [
           'error',
           { exports: ['metadata', 'config'] },
         ],
-        'eslint-plugin-best-practices/file-naming-convention': [
+        'eslint-plugin-quality-gates/file-naming-convention': [
           'warn',
           { pattern: '^[a-z][a-zA-Z0-9]*$' },
         ],
