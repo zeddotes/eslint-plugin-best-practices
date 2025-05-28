@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.3](https://github.com/zeddotes/eslint-plugin-quality-gates/compare/v1.2.2...v1.2.3) (2025-05-28)
+
+
+### Bug Fixes
+
+* updated peer dep ([28ad5e0](https://github.com/zeddotes/eslint-plugin-quality-gates/commit/28ad5e00c2b8c1f569c862605529d78356420ddd))
+
 ### [1.2.2](https://github.com/zeddotes/eslint-plugin-quality-gates/compare/v1.2.1...v1.2.2) (2025-05-12)
 
 
