@@ -10,7 +10,10 @@ import { TSESLint, TSESTree } from '@typescript-eslint/utils';
  * ```json
  * {
  *   "rules": {
+ *     // Using the full plugin name (recommended)
  *     "eslint-plugin-quality-gates/require-exports": ["error", { "exports": ["metadata", "config"] }]
+ *     // OR using the short name (for backward compatibility)
+ *     "quality-gates/require-exports": ["error", { "exports": ["metadata", "config"] }]
  *   }
  * }
  * ```

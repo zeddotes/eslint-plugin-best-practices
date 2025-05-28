@@ -17,7 +17,25 @@ declare const process: {
  * ```json
  * {
  *   "rules": {
+ *     // Using the full plugin name (recommended)
  *     "eslint-plugin-quality-gates/file-naming-convention": ["error", {
+ *       "patterns": [
+ *         {
+ *           "pattern": "^[a-z][a-zA-Z0-9]*$",
+ *           "folders": ["src/components"]
+ *         },
+ *         {
+ *           "pattern": "^[A-Z][a-zA-Z0-9]*$",
+ *           "folders": ["src/pages"]
+ *         },
+ *         {
+ *           "pattern": "^[a-z][a-z0-9-]*$",
+ *           "folders": ["src/utils"]
+ *         }
+ *       ]
+ *     }]
+ *     // OR using the short name (for backward compatibility)
+ *     "quality-gates/file-naming-convention": ["error", {
  *       "patterns": [
  *         {
  *           "pattern": "^[a-z][a-zA-Z0-9]*$",

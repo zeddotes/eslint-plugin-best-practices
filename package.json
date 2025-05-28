@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-quality-gates",
-  "version": "1.2.5",
+  "version": "1.2.2",
   "description": "ESLint plugin that enforces best practices in JavaScript/TypeScript codebases",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -28,7 +28,7 @@
     "eslint",
     "eslint-plugin",
     "eslintplugin",
-    "eslint-quality-gates",
+    "eslint-plugin-quality-gates",
     "typescript"
   ],
   "author": {
@@ -38,6 +38,7 @@
   "license": "ISC",
   "dependencies": {
     "@typescript-eslint/rule-tester": "^8.32.0",
+    "@typescript-eslint/utils": "^8.32.0",
     "path": "^0.12.7",
     "url": "^0.11.4"
   },
@@ -57,9 +58,7 @@
     "typescript": "^5.8.3"
   },
   "peerDependencies": {
-    "eslint": ">=8.0.0",
-    "@typescript-eslint/utils": "^8.0.0",
-    "@typescript-eslint/parser": "^8.0.0"
+    "eslint": ">=8.0.0"
   },
   "engines": {
     "node": ">=16.0.0"
