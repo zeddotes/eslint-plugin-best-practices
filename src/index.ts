@@ -3,8 +3,8 @@ import { requireExports } from './rules/require-exports.js';
 
 const plugin = {
   rules: {
-    'require-exports': requireExports,
-    'file-naming-convention': fileNamingConvention,
+    'eslint-plugin-quality-gates/require-exports': requireExports,
+    'eslint-plugin-quality-gates/file-naming-convention': fileNamingConvention,
   },
   configs: {
     recommended: {

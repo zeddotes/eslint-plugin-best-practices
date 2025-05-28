@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-quality-gates",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "ESLint plugin that enforces best practices in JavaScript/TypeScript codebases",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
