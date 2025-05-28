@@ -99,6 +99,40 @@ This rule:
 - Useful for ensuring configuration files have required exports
 - Supports both variable and function exports
 
+### require-attributes
+
+Enforces required attributes on HTML/JSX elements and validates their values. This is useful for ensuring consistent component interfaces and accessibility requirements.
+
+```javascript
+// In your ESLint config
+module.exports = {
+  rules: {
+    'eslint-plugin-quality-gates/require-attributes': ['error', {
+      elements: [
+        {
+          tag: 'form',
+          attributes: [{ name: 'noValidate', required: true }]
+        },
+        {
+          tag: 'input',
+          attributes: [
+            { name: 'type', value: 'checkbox' },
+            { name: 'checked', value: false }
+          ]
+        }
+      ]
+    }]
+  }
+};
+```
+
+This rule:
+- Enforces required attributes on specific HTML/JSX elements
+- Validates attribute values (string, boolean, or number)
+- Supports both direct literals and JSX expressions
+- Helps maintain consistent component interfaces
+- Useful for enforcing accessibility requirements
+
 ## Contributing
 
 We welcome contributions! Here's how you can help:

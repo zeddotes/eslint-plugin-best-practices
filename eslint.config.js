@@ -1,4 +1,4 @@
-import bestPracticesPlugin from './dist/index.js';
+import qualityGatesPlugin from './dist/index.js';
 import tsParser from '@typescript-eslint/parser';
 import tsEslintPlugin from '@typescript-eslint/eslint-plugin';
 import prettierPlugin from 'eslint-plugin-prettier';
@@ -40,7 +40,7 @@ export default [
       },
     },
     plugins: {
-      'eslint-plugin-best-practices': bestPracticesPlugin,
+      'eslint-plugin-quality-gates': qualityGatesPlugin,
       '@typescript-eslint': tsEslintPlugin,
       'prettier': prettierPlugin,
     },
