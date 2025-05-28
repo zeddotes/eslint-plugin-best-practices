@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.4](https://github.com/zeddotes/eslint-plugin-quality-gates/compare/v1.2.5...v1.2.4) (2025-05-28)
+
+
+### Bug Fixes
+
+* updated naming convention ([0feddc4](https://github.com/zeddotes/eslint-plugin-quality-gates/commit/0feddc49c1652bb1cb8ce034b580df42863824fe))
+
+
+### Chores
+
+* **release:** 1.2.3 ([aa30902](https://github.com/zeddotes/eslint-plugin-quality-gates/commit/aa309029e2f4278e78d9b8865c80c5881f4e3eff))
+
 ### [1.2.3](https://github.com/zeddotes/eslint-plugin-quality-gates/compare/v1.2.5...v1.2.3) (2025-05-28)
 
 
